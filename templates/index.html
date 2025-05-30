@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>مفاجأة التحميل</title>
+    <style>
+        body {
+            font-family: Tahoma, sans-serif;
+            background: #f0f0f0;
+            text-align: center;
+            direction: rtl;
+            padding-top: 80px;
+        }
+        input, select, button {
+            padding: 12px;
+            margin: 10px;
+            width: 300px;
+            font-size: 16px;
+        }
+        #download-link {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+        #error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>🎁 أدخل رابط الفيديو أو الصوت</h2>
+    <form method="POST">
+        <input name="url" placeholder="رابط الفيديو" required><br>
+        <select name="format">
+            <option value="mp4">🎬 فيديو MP4</option>
+            <option value="mp3">🎵 صوت MP3</option>
+        </select><br>
+        <button type="submit">ابدأ التحميل 🚀</button>
+    </form>
+
+    {% if token %}
+        <div id="download-link">
+            ✅ الملف جاهز: <a href="/download/{{ token }}">اضغط هنا للتحميل</a>
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <p id="error">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
